@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace VisitorPlacementToolCore.VisitorClasses
 {
-    public interface VisitorIRepository
+    public interface IVisitorInterface
     {
         public bool CreateVisitor(string name, DateOnly birthdate);
+        public Visitor GetVisitorById(int id);
+        public List<Visitor> GetVisitorsByGroup(int groupId);
+        public bool InsertVisitorIntoGroup(int visitorId, int groupId);
     }
 }

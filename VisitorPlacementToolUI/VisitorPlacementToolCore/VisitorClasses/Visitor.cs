@@ -17,7 +17,6 @@ namespace VisitorPlacementToolCore.VisitorClasses
 
         private DateOnly _birthdate;
         public DateOnly Birthdate { get {  return _birthdate; } }
-        private List<Happening> _happenings;
 
         public Visitor(int id, string name, DateOnly birthdate)
         {
@@ -25,5 +24,6 @@ namespace VisitorPlacementToolCore.VisitorClasses
             _name = name;
             _birthdate = birthdate;
         }
+
     }
 }

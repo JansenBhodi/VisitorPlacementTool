@@ -9,9 +9,9 @@ namespace VisitorPlacementToolCore.VisitorClasses
 {
     public class VisitorService
     {
-        private VisitorIRepository _repository;
+        private IVisitorInterface _repository;
 
-        public VisitorService(VisitorIRepository repository)
+        public VisitorService(IVisitorInterface repository)
         {
             _repository = repository;
         }
@@ -36,9 +36,58 @@ namespace VisitorPlacementToolCore.VisitorClasses
             }
         }
 
-        public bool JoinHappening(Happening happening)
+        public Visitor GetVisitorById(int visitorId)
         {
-            return true;
+            if(visitorId < 0)
+            {
+				throw new InvalidDataException("Visitor Id was invalid, check selected happening data");
+			}
+
+            try
+            {
+                return _repository.GetVisitorById(visitorId);
+            }
+            catch (Exception ex)
+            {
+
+                throw new InvalidDataException("Data invalid", ex);
+            }
+        }
+
+        public List<Visitor> GetVisitorsByGroupId(int groupId)
+        {
+            if(groupId < 0)
+            {
+                throw new InvalidDataException("Visitor Id was invalid, check selected happening data");
+            }
+
+			try
+			{
+				return _repository.GetVisitorsByGroup(groupId);
+			}
+			catch (Exception ex)
+			{
+
+				throw new InvalidDataException("Data invalid", ex);
+			}
+		}
+
+        public bool AddVisitorToGroup(int visitorId, int groupId)
+        {
+            if(visitorId < 0 || groupId < 0)
+			{
+				throw new InvalidDataException("Visitor Id was invalid, check selected happening data");
+			}
+
+            try
+            {
+                return _repository.InsertVisitorIntoGroup(visitorId, groupId);
+            }
+            catch (Exception ex)
+            {
+
+				throw new InvalidDataException("Data invalid", ex);
+			}
         }
 
         public bool ValidateNewVisitor(string name, DateOnly birthdate)
