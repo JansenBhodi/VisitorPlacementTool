@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\VisitorPlacementToolCore\VisitorPlacementToolCore.csproj" />
     <ProjectReference Include="..\VisitorPlacementToolDAL\VisitorPlacementToolDAL.csproj" />
+    <ProjectReference Include="..\VisitorPlacementToolWPF\VisitorPlacementToolWPF.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,13 +9,13 @@ namespace VisitorPlacementToolCore.RowClasses
 {
 	public class Row
 	{
-		private string _name;
-		public string Name { get { return _name; } }
+		private int _name;
+		public int Name { get { return _name; } }
 
 		private List<Chair> _chairs;
 		public List<Chair> Chairs { get { return _chairs; } }
 
-		public Row(string name)
+		public Row(int name)
 		{
 			_name = name;
 			_chairs = new List<Chair>();

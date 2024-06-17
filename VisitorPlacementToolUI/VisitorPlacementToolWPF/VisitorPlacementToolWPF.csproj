@@ -8,4 +8,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VisitorPlacementToolCore\VisitorPlacementToolCore.csproj" />
+    <ProjectReference Include="..\VisitorPlacementToolDAL\VisitorPlacementToolDAL.csproj" />
+  </ItemGroup>
+
 </Project>

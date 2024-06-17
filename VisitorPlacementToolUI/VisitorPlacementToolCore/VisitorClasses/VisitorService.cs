@@ -16,7 +16,13 @@ namespace VisitorPlacementToolCore.VisitorClasses
             _repository = repository;
         }
 
-        public bool CreateVisitor(string name, DateOnly birthdate)
+        public VisitorService()
+        {
+            //used when sorting, does not need database calls
+        }
+
+		#region Database
+		public bool CreateVisitor(string name, DateOnly birthdate)
         {
             try
             {
@@ -105,5 +111,20 @@ namespace VisitorPlacementToolCore.VisitorClasses
                 throw new InvalidDataException("Data did not match up to standard", ex);
             }
         }
-    }
+		#endregion
+
+		#region Sorting
+
+        public bool IsVisitorChild(DateOnly eventDate, Visitor visitor)
+        {
+            var ageDifference = eventDate.Year - visitor.Birthdate.Year;
+            if(ageDifference > 12)
+            {
+                return true;
+            }
+            return false;
+        }
+
+		#endregion
+	}
 }

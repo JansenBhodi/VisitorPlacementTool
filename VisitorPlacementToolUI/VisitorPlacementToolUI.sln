@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorPlacementToolUI", "VisitorPlacementToolUI\VisitorPlacementToolUI.csproj", "{1869DA9E-55C4-460A-99AE-0D7E7D4F8561}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorPlacementToolUI", "VisitorPlacementToolUI\VisitorPlacementToolUI.csproj", "{1869DA9E-55C4-460A-99AE-0D7E7D4F8561}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorPlacementToolCore", "VisitorPlacementToolCore\VisitorPlacementToolCore.csproj", "{951A6F7F-F095-48CA-AF3D-1FA0210B2D87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorPlacementToolCore", "VisitorPlacementToolCore\VisitorPlacementToolCore.csproj", "{951A6F7F-F095-48CA-AF3D-1FA0210B2D87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorPlacementToolTesting", "VisitorPlacementToolTesting\VisitorPlacementToolTesting.csproj", "{57FC404D-A934-46A4-92EC-9E3B2C4F53F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorPlacementToolTesting", "VisitorPlacementToolTesting\VisitorPlacementToolTesting.csproj", "{57FC404D-A934-46A4-92EC-9E3B2C4F53F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorPlacementToolDAL", "VisitorPlacementToolDAL\VisitorPlacementToolDAL.csproj", "{4D80EB08-C838-477A-87C0-5CD5A7E16E48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorPlacementToolDAL", "VisitorPlacementToolDAL\VisitorPlacementToolDAL.csproj", "{4D80EB08-C838-477A-87C0-5CD5A7E16E48}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorPlacementToolWPF", "VisitorPlacementToolWPF\VisitorPlacementToolWPF.csproj", "{BD24C910-5E49-4DD1-B030-45DA7419F2A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{4D80EB08-C838-477A-87C0-5CD5A7E16E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D80EB08-C838-477A-87C0-5CD5A7E16E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D80EB08-C838-477A-87C0-5CD5A7E16E48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD24C910-5E49-4DD1-B030-45DA7419F2A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD24C910-5E49-4DD1-B030-45DA7419F2A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD24C910-5E49-4DD1-B030-45DA7419F2A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD24C910-5E49-4DD1-B030-45DA7419F2A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

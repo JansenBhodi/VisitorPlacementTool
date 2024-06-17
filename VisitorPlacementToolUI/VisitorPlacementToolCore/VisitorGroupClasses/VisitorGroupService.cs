@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VisitorPlacementToolCore.VisitorClasses;
 
 namespace VisitorPlacementToolCore.VisitorGroupClasses
 {
@@ -16,6 +17,7 @@ namespace VisitorPlacementToolCore.VisitorGroupClasses
 			_groupRepo = groupRepo;
 		}
 
+		#region Database
 		public VisitorGroup GetGroupByVisitor(int visitorId)
 		{
 			VisitorGroup visitorGroup = null;
@@ -78,5 +80,20 @@ namespace VisitorPlacementToolCore.VisitorGroupClasses
 
 			return result;	
 		}
+
+		#endregion
+
+		#region Sorting
+
+		public bool DoesGroupHaveChild(VisitorGroup group, DateOnly eventDate)
+		{
+			foreach(Visitor visitor in group.Visitors)
+			{
+				if (new VisitorService().IsVisitorChild(eventDate, visitor)) return true;
+			}
+			return false;
+		}
+
+		#endregion
 	}
 }

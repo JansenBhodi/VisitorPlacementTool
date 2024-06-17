@@ -9,16 +9,23 @@ namespace VisitorPlacementToolCore.ChairClasses
 {
 	public class Chair
 	{
-		private string _name;
-		public string Name { get { return _name; } }
+		private int _name;
+		public int Name { get { return _name; } }
 
 		private Visitor _visitor;
 		public Visitor Visitor { get { return _visitor; } }
 
-		public Chair(string name, Visitor visitor)
+		public Chair(int name, Visitor visitor)
 		{
 			_name = name;
 			_visitor = visitor;
 		}
+
+		public Chair(int name)
+		{
+			_name = name;
+		}
+
+
 	}
 }
