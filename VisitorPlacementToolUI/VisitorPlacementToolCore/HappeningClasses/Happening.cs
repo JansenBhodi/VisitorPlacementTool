@@ -26,13 +26,16 @@ namespace VisitorPlacementToolCore.HappeningClasses
         {
             _lastSignupDate = lastSignupDate;
             _dateOfHappening = dateOfHappening;
+            _groups = new List<VisitorGroup>();
+            _sections = new List<Section>();
         }
 
 		public Happening(DateTime lastSignupDate, DateTime dateOfHappening, List<Section> sections)
 		{
             _sections = sections;
 			_lastSignupDate = lastSignupDate;
-			_dateOfHappening = dateOfHappening;
+            _groups = new List<VisitorGroup>();
+            _dateOfHappening = dateOfHappening;
 		}
 
         public bool AddGroup(VisitorGroup group)
@@ -61,7 +64,7 @@ namespace VisitorPlacementToolCore.HappeningClasses
             }
             catch (Exception)
             {
-                return 0;
+                throw new InvalidCastException("There is no existing list of groups in this event.");
             }
             return result;
         }

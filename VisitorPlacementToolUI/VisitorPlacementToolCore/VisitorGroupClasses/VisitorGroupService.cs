@@ -12,6 +12,11 @@ namespace VisitorPlacementToolCore.VisitorGroupClasses
 
 		private IGroupRepository _groupRepo;
 
+		//for testing
+		public VisitorGroupService()
+		{
+
+		}
 		public VisitorGroupService(IGroupRepository groupRepo)
 		{
 			_groupRepo = groupRepo;

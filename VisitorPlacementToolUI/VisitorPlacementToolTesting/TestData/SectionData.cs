@@ -97,6 +97,74 @@ namespace VisitorPlacementToolTesting.TestData
             return result;
         }
 
+        public List<Section> GetEmptySectionListForDescending()
+        {
+            List<Section> result = new List<Section>();
+            for (int i = 0; i < 5; i++)
+            {
+                result.Add(new Section("a"));
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Row a = new Row(0);
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                result[0].Rows.Add(a);
+            }
+            for (int i = 0; i < 1; i++)
+            {
+                Row a = new Row(0);
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                result[1].Rows.Add(a);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Row a = new Row(0);
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                result[2].Rows.Add(a);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Row a = new Row(0);
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                result[3].Rows.Add(a);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Row a = new Row(0);
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                a.AssignChair(new Chair(1));
+                result[4].Rows.Add(a);
+            }
+            return result;
+        }
+
         public List<Section> GetEmptySectionListExpectedResult()
         {
             List<Section> result = new List<Section>();

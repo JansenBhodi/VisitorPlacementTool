@@ -13,17 +13,22 @@ namespace VisitorPlacementToolCore.HappeningClasses
 	public class HappeningService
 	{
 		private IHappeningInterface _repo;
-		private VisitorGroupService _groupService;
-		private SectionService _sectionService;
+		private VisitorGroupService _groupService = new VisitorGroupService();
+		private SectionService _sectionService = new SectionService();
 
 		public HappeningService(IHappeningInterface repo)
 		{
 			_repo = repo;
 		}
+		//testing
+        public HappeningService()
+        {
+            
+        }
 
-		#region Database
-		//Database functions
-		public bool CreateHappening(int maxVisitors, DateOnly signupDate, DateOnly eventDate)
+        #region Database
+        //Database functions
+        public bool CreateHappening(int maxVisitors, DateOnly signupDate, DateOnly eventDate)
 		{
 			try
 			{
@@ -195,10 +200,11 @@ namespace VisitorPlacementToolCore.HappeningClasses
 			try
             {
                 int check = 0;
+				int maxVisitors = happening.GetMaxVisitors();
                 foreach (VisitorGroup group in happening.Groups)
                 {
                     check += group.Visitors.Count();
-                    if (check! > happening.GetMaxVisitors())
+                    if (check <= maxVisitors)
                     {
                         sorted.Add(group);
                     }
@@ -249,18 +255,20 @@ namespace VisitorPlacementToolCore.HappeningClasses
             if (CalculateAscendingVsDescending(happening, attendingVisitors, childSeatsNeeded.Sum()))
 			{
                 //Sort by Ascending
-                happening.sections.OrderBy(s => s.TotalChairs);
+                List<Section> input = new List<Section>();
+				input = happening.sections.OrderBy(s => s.TotalChairs).ToList();
                 childrenGroups = childrenGroups.OrderBy(g => g.GetChildrenPlusChaperoneCount(happening.DateOfHappening)).ToList();
                 childSeatsNeeded = childSeatsNeeded.OrderBy(g => g).ToList();
-                result = SortGroupsToSections(sorted, childrenGroups, childSeatsNeeded, CalculateAscendingSeats(happening, attendingVisitors, childSeatsNeeded.Sum()));
+                result = SortGroupsToSections(input, sorted, childrenGroups, childSeatsNeeded, CalculateAscendingSeats(happening, attendingVisitors, childSeatsNeeded.Sum()));
             }
 			else
 			{
-				//Sort by Descending
-				happening.sections.OrderByDescending(s => s.TotalChairs);
+                //Sort by Descending
+                List<Section> input = new List<Section>();
+                input = happening.sections.OrderByDescending(s => s.TotalChairs).ToList();
                 childrenGroups = childrenGroups.OrderByDescending(g => g.GetChildrenPlusChaperoneCount(happening.DateOfHappening)).ToList();
                 childSeatsNeeded = childSeatsNeeded.OrderByDescending(g => g).ToList();
-                result = SortGroupsToSections(sorted, childrenGroups, childSeatsNeeded, CalculateDescendingSeats(happening, attendingVisitors, childSeatsNeeded.Sum()));
+                result = SortGroupsToSections(input, sorted, childrenGroups, childSeatsNeeded, CalculateDescendingSeats(happening, attendingVisitors, childSeatsNeeded.Sum()));
             }
 
 
@@ -269,15 +277,16 @@ namespace VisitorPlacementToolCore.HappeningClasses
 
         public bool CalculateAscendingVsDescending(Happening happening, int attendingVisitors, int childSeatsNeeded)
 		{
-			if (CalculateAscendingSeats(happening, attendingVisitors, childSeatsNeeded) >= CalculateDescendingSeats(happening, attendingVisitors, childSeatsNeeded)) return true;
-			else return false;
+			if (CalculateAscendingSeats(happening, attendingVisitors, childSeatsNeeded) >= CalculateDescendingSeats(happening, attendingVisitors, childSeatsNeeded)) return false;
+			else return true;
         }
 
 		public int CalculateDescendingSeats(Happening happening, int attendingVisitors, int childSeatsNeeded)
         {
+			List<Section> input = new List<Section>();
             try
             {
-                happening.sections.OrderByDescending(s => s.TotalChairs);
+                input = happening.sections.OrderByDescending(s => s.TotalChairs).ToList();
             }
             catch (Exception ex)
             {
@@ -289,7 +298,7 @@ namespace VisitorPlacementToolCore.HappeningClasses
             int openSeats = 0;
             int childrenSeats = 0;
 
-            foreach (Section section in happening.sections)
+            foreach (Section section in input)
             {
                 openSeats += section.TotalChairs;
                 childrenSeats += section.Rows[0].Chairs.Count();
@@ -303,10 +312,11 @@ namespace VisitorPlacementToolCore.HappeningClasses
         }
 
 		public int CalculateAscendingSeats(Happening happening, int attendingVisitors, int childSeatsNeeded)
-		{
+        {
+            List<Section> input = new List<Section>();
             try
             {
-                happening.sections.OrderBy(s => s.TotalChairs);
+                input = happening.sections.OrderBy(s => s.TotalChairs).ToList();
             }
             catch (Exception ex)
             {
@@ -319,7 +329,7 @@ namespace VisitorPlacementToolCore.HappeningClasses
             int openSeats = 0;
             int childrenSeats = 0;
 
-            foreach (Section section in happening.sections)
+            foreach (Section section in input)
             {
                 openSeats += section.TotalChairs;
                 childrenSeats += section.Rows[0].Chairs.Count();
@@ -333,9 +343,8 @@ namespace VisitorPlacementToolCore.HappeningClasses
         }
 
 
-		public List<Section> SortGroupsToSections(List<VisitorGroup> groups, List<VisitorGroup> childGroups, List<int> ChildrenPerGroup, int sectionsNeeded)
+		public List<Section> SortGroupsToSections(List<Section> sections, List<VisitorGroup> groups, List<VisitorGroup> childGroups, List<int> ChildrenPerGroup, int sectionsNeeded)
 		{
-			List<Section> sections = new List<Section>();
             List<Visitor> visitors = new List<Visitor>();
 			
 			int p = 0;
@@ -346,7 +355,7 @@ namespace VisitorPlacementToolCore.HappeningClasses
                 {
 
                     cgroup.SortVisitorsByAge();
-                    for (int i = ChildrenPerGroup[p] + 1; i <= cgroup.Visitors.Count(); i++)
+                    for (int i = ChildrenPerGroup[p]; i < cgroup.Visitors.Count(); i++)
                     {
 						visitors.Add(cgroup.Visitors[i]);
                     }
@@ -417,7 +426,7 @@ namespace VisitorPlacementToolCore.HappeningClasses
 			catch (Exception ex)
 			{
 
-				throw new InvalidDataException("", ex);
+				throw new InvalidDataException("Visitor Data was lacking", ex);
 			}
 
             return result;
