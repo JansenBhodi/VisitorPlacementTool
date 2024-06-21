@@ -21,6 +21,27 @@ namespace VisitorPlacementToolCore.RowClasses
 			_chairs = new List<Chair>();
 		}
 
+		public bool AssignChair(Chair chair)
+		{
+			try
+            {
+				if(_chairs.Count() != 11)
+                {
+                    _chairs.Add(chair);
+					return true;
+                }
+				else
+				{
+					throw new InvalidOperationException("This Row has reached the maximum amount of chairs.");
+				}
+            }
+			catch (Exception ex)
+			{
+
+				throw ex;
+			}
+			return false;
+		}
 
 	}
 }

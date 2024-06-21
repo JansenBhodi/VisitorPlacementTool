@@ -22,7 +22,7 @@ namespace VisitorPlacementToolCore.VisitorClasses
         }
 
 		#region Database
-		public bool CreateVisitor(string name, DateOnly birthdate)
+		public bool CreateVisitor(string name, DateTime birthdate)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace VisitorPlacementToolCore.VisitorClasses
 			}
         }
 
-        public bool ValidateNewVisitor(string name, DateOnly birthdate)
+        public bool ValidateNewVisitor(string name, DateTime birthdate)
         {
             try
             {

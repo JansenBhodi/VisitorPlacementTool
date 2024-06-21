@@ -23,9 +23,9 @@ namespace VisitorPlacementToolCore.RowClasses
 			else throw new InvalidDataException("Number was impossible, check sorting loop.");
 		}
 
-		public Row FillNewRow(int rowNumber, List<Visitor> visitors)
+		public Row FillNewRow(int rowNumber, Visitor[] visitors)
 		{
-			if(!(visitors.Count > 2 && visitors.Count < 11))
+			if(!(visitors.Length > 2 && visitors.Length < 11))
 			{
 				throw new IndexOutOfRangeException("A row need to be at least 3 seats long and may only have a maximum of 10 seats.");
 			}
@@ -52,8 +52,7 @@ namespace VisitorPlacementToolCore.RowClasses
 			}
 			catch (Exception ex)
 			{
-				//write a new error handling class for this one
-				throw ex;
+				throw new InvalidDataException("Data was not aligned with expected format.", ex);
 			}
 
 			return Result;

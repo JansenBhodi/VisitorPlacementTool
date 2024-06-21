@@ -15,10 +15,10 @@ namespace VisitorPlacementToolCore.VisitorClasses
         private string _name;
         public string Name { get { return _name; } }
 
-        private DateOnly _birthdate;
-        public DateOnly Birthdate { get {  return _birthdate; } }
+        private DateTime _birthdate;
+        public DateTime Birthdate { get {  return _birthdate; } }
 
-        public Visitor(int id, string name, DateOnly birthdate)
+        public Visitor(int id, string name, DateTime birthdate)
         {
             _id = id;
             _name = name;

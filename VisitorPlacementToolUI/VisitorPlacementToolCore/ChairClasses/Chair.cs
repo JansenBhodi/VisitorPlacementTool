@@ -26,6 +26,14 @@ namespace VisitorPlacementToolCore.ChairClasses
 			_name = name;
 		}
 
+		public void AssignChair(Visitor visitor)
+		{
+			if(_visitor != null)
+			{
+				throw new InvalidOperationException("This Chair has already been assigned a visitor");
+			}
+			_visitor = visitor;
+		}
 
 	}
 }

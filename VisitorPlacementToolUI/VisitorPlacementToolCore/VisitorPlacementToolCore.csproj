@@ -7,9 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Group\" />
-    <Folder Include="Row\" />
-    <Folder Include="Section\" />
+    <Compile Remove="Group\**" />
+    <Compile Remove="Row\**" />
+    <Compile Remove="Section\**" />
+    <EmbeddedResource Remove="Group\**" />
+    <EmbeddedResource Remove="Row\**" />
+    <EmbeddedResource Remove="Section\**" />
+    <None Remove="Group\**" />
+    <None Remove="Row\**" />
+    <None Remove="Section\**" />
   </ItemGroup>
 
 </Project>
